@@ -6,13 +6,14 @@
 * GPU: AMD Radeon Vega 6
 * RAM: 16 GB DDR4 (Soldered)
 * Audio: TBD
-* Panel: 16"
+* Panel: 16" 1080P 60Hz
 * SSD: 516 GB SN570 (replaced by 1TB Samsung 980)
 * Wi-Fi: Realtek 8822CE Wireless LAN 802.11ac PCI-E NIC
 
 ## Working OSes
 
-* Ventura (tested 13.4.1, upgraded to 13.5.1)
+* Somona 14.6.1 as for now, previous versions should work
+* Ventura (tested 13.4.1, upgraded to 13.5.1 & 13.6.?)
 * Big Sur
 * Monterey should work, but when booting the installer, it asked me to connect a mouse or a keyboard. Couldn't get to the installer UI.
 
@@ -37,6 +38,7 @@ Other close laptops (Huawei AMD from the same era) may work too, but it's unsure
 * Internal audio (speakers & jack: Not tried because I use USB audio anyway, may look into the future)
 * Wi-Fi: Will never work with the installed chip, but the M.2 slot is user serviceable, so you can put a supported module here.
 * Fingerprint Reader: No drivers for Linux, so don't expect to get that supported.
+* ICloud connection: Since there is no ethernet and the integrated WiFi does not work, MacOs does not seems to be able to stay connected to the account. I included *NullEthernet.kext* that may resolve it for you, but i personaly had no success. This mean that you cannot download apps from the App Store
 
 ## GPU
 
@@ -45,12 +47,15 @@ GPU acceleration is obtained by using [NootedRed](https://github.com/ChefKissInc
 ### Tested apps
 
 * Chrome (works, but makes the system very laggy for 20 seconds, unless you disable material acceleration)
+  > I tried installing *BFixup.kext* to fix it, but without much success. See [This issue](https://github.com/LeComploteur/HONOR-MAGICBOOK-AMD-HUAWEI-MATEBOOK-AMD-RyzenTosh/issues/1) 
 * Electron-based apps seem to suffer the same way Chrome does. Disabling GPU acceleration might help, if the option is available.
 * Adobe apps: Hit or miss, even with AMDFriend.
     * Premiere: Seems again related to GPU acceleration. It seems to me that the program tries to initialize it, but it fails and then crashes.
     * After Effects: Same.
     * Media Encoder: Works, but using only the CPU.
     * Other apps: Not tested.
+* Davinci Resolve works fine
+* Final Cut Pro works fine too
 
 ## USB
 
@@ -66,7 +71,7 @@ Follow the instructions there and go to:
 
 * Disable one of these controllers:
     * XHCI0 is used by the Type-C and LEFT USB-A port.
-    * XHCI1 is used by the two RIGHT USB ports and the Fingerprint reader.
+    * XHCI1 is used by the two RIGHT USB ports and the Fingerprint reader, as well as the Bluetooth Adapter
 
 **Do not disable both ports at the same time.** You will lose all USB ports, and you will not be able to boot the tool again to correct your mistake.
 
